@@ -1,3 +1,4 @@
+#-*- coding: UTF-8 -*-
 #!/usr/bin/env python
 
 import sys
@@ -5,10 +6,11 @@ import re
 import requests
 import scraperwiki
 import codecs
+import sys
 
 # Allow unicode characters to be printed.
 sys.stdout = codecs.getwriter('utf8')(sys.stdout)
-api_url = 'http://en.wikipedia.org/w/api.php?action=query&format=json'
+api_url = 'http://zh.wikipedia.org/w/api.php?action=query&format=json'
 
 
 def clear_db():
@@ -113,8 +115,10 @@ def scrape_infobox(pageid):
 
 
 def main():
-    clear_db()
-    scrape_members(sys.argv[1][:-1], sys.argv[1][-1])
+    reload(sys)
+    sys.setdefaultencoding('utf-8')
+    clear_db()    
+    scrape_members(sys.argv[1], sys.argv[1])
 
 
 if __name__ == '__main__':
